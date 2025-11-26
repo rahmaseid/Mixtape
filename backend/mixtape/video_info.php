@@ -53,8 +53,8 @@ if ($stmt->num_rows > 0) {
     $stmt->close();
 } else {
     $stmt->close();
-    $stmt = $conn->prepare("INSERT INTO songs (video_id, title, duration) VALUES (?, ?, ?)");
-    $stmt->bind_param("ssi", $video_id, $title, $duration_seconds);
+    $stmt = $conn->prepare("INSERT INTO songs (video_id, title, duration, url) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssis", $video_id, $title, $duration_seconds, $url);
     $stmt->execute();
     $song_id = $stmt->insert_id;
     $stmt->close();
