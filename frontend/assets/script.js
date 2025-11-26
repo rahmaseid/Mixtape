@@ -153,11 +153,14 @@ function initYouTubePlayer() {
 // Called by YouTube API when it's ready  
 window.onYouTubeIframeAPIReady = function () {
     console.log("YouTube iframe API ready");
-    initYouTubePlayer();
+    youtubeApiLoaded = true;
+    maybeInitYouTubePlayer();
 };
 
 // Initialize the application when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    domLoaded = true;
+    maybeInitYouTubePlayer();
     // Set up theme
     initTheme();
     setupThemeToggle();
