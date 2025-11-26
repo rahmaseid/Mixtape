@@ -430,16 +430,22 @@ trackItem.innerHTML = `
 
     // Load and play a track
     function playTrack(videoId) {
-        if (!ytPlayer) return;
-        
+        if (!ytPlayer) {
+            console.warn('ytPlayer not ready when playTrack was called, trying to initialize...');
+            if (window.YT && window.YT.Player) {
+                initYouTubePlayer();
+            } else {
+                console.error('YouTube API not loaded – cannot play track yet.');
+                return;
+            }
+        }
+    
         ytPlayer.loadVideoById(videoId);
         ytPlayer.playVideo();
         isPaused = false;
         document.getElementById('play-pause-icon').src = 'assets/pause.png';
-        
-        // Update duration from API
+    
         updateTrackDuration();
-        
         startProgress();
     }
     
