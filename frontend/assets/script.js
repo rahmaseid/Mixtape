@@ -29,6 +29,19 @@ let isPaused = true;
 let pauseTimeout = null;
 // Variable for YT API
 let ytPlayer;
+let youtubeApiLoaded = false;
+let domLoaded = false;
+
+function maybeInitYouTubePlayer() {
+    // Only create the player once, when both DOM and API are ready
+    if (ytPlayer) return;
+    if (!youtubeApiLoaded || !domLoaded) return;
+    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') return;
+
+    console.log("Initialising YouTube player");
+    initYouTubePlayer();
+}
+
 
 // Initialize theme from localStorage or default to light
 function initTheme() {
