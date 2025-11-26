@@ -858,11 +858,11 @@ button:hover {
 }
 /* Play/Pause if playing vs if not */
 #play-pause-icon.playing {
-    content: url('pause.png');
+    content: url('assets/pause.png');
 }
 
 #play-pause-icon:not(.playing) {
-    content: url('play.png');
+    content: url('assets/play.png');
 }
 
 /* Previous Playlists Styles */
