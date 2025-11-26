@@ -167,6 +167,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Start radio message cycle
     startMessageCycle();
+
+    function ensureYouTubePlayer() {
+        // If it already exists, we're done
+        if (ytPlayer) {
+            console.log('ytPlayer already initialized');
+            return;
+        }
+    
+        // If the API is loaded, create the player now
+        if (window.YT && window.YT.Player) {
+            console.log('YouTube API detected, initializing player (fallback)');
+            initYouTubePlayer();
+            return;
+        }
+    
+        // Otherwise, keep checking until it’s there
+        console.log('Waiting for YouTube API...');
+        setTimeout(ensureYouTubePlayer, 300);
+    }
+    
+    // Kick off the check
+    ensureYouTubePlayer();
         
     // Set up logout button functionality
     const logoutBtn = document.getElementById('logout-btn');
